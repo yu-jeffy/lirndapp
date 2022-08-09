@@ -2,17 +2,19 @@ import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 import Layout from '../comps/Layout';
-import { RainbowKitProvider, getDefaultWallets } from '@rainbow-me/rainbowkit';
+import merge from 'lodash.merge';
+import { RainbowKitProvider, getDefaultWallets, Theme, darkTheme } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
-    chain.mainnet,
     chain.polygon,
-    chain.optimism,
-    chain.arbitrum,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
       ? [chain.goerli, chain.kovan, chain.rinkeby, chain.ropsten]
       : []),
@@ -39,11 +41,18 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
+const myTheme = merge(darkTheme(), {
+  colors: {
+    accentColor: 'linear-gradient(90deg, #8015E8 0%, #E27625 100%)',
+  },
+} as Theme);
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider 
-        coolMode  
+    <WagmiConfig client={wagmiClient} >
+      <RainbowKitProvider
+        theme={myTheme}
+        coolMode
         chains={chains}>
         <Layout>
           <Component {...pageProps} />

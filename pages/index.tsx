@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router'
-import Link from "next/link"
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import type { NextPage } from 'next';
-import Image from 'next/image'
-import TestFrame from '../public/TestFrame.png'
+import Image from 'next/image';
+import TestFrame from '../public/TestFrame.png';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import dynamic from 'next/dynamic';
+import ClientOnly from "../comps/ClientOnly";
 
 import {
   useAccount,
@@ -18,18 +18,23 @@ import {
 } from "wagmi";
 import { ethers } from "ethers";
 
+const NoSSRHome = dynamic(() => import("../comps/Ripple"), { suspense: true });
+
 const Home: NextPage = () => {
+
   return (
     <div className="homeContainer">
-      <header className="AppHeader">
-      </header>
-      <div className="homeLeft">
-        <b> Text here </b> <br/>
-        More text here
+      <div className="homeTitle">
+        Learn. Verify. Showcase.
+        <p className="homeTitleSub">Lirn is the home for all autodidacts that learn online. <br/>
+        Now, you can verify your knowledge with Non-Transferable Tokens.<br/>
+        <a href="ntts" className="homeTitleLink">Learn more about NTTs &#128279;</a>
+        </p>
+        
       </div>
-      <div className="homeRight">
-        <Image src={TestFrame}/>
-      </div>
+      <ClientOnly>
+        <NoSSRHome />
+      </ClientOnly>
     </div>
   );
 };

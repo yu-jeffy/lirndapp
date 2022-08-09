@@ -27,11 +27,14 @@ const Navbar = () => {
         </div>
       </a>
       <div className="linkBar">
-        <Link href="/">
-          <a className="links"> Home </a>
+        <Link href="/explore">
+          <a className="links"> Explore </a>
         </Link>
         <Link href="/leap">
           <a className="links"> LirnLeap </a>
+        </Link>
+        <Link href="/educators">
+          <a className="links"> Educators </a>
         </Link>
         <Link href="/profile">
           <a className="links"> Profile </a>
