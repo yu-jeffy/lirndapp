@@ -7,33 +7,43 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import {
-    useAccount,
-    useConnect,
-    useContract,
-    useContractRead,
-    useContractWrite,
-    useNetwork,
-    useWaitForTransaction,
-  } from "wagmi";
-  import { ethers } from "ethers";
+  useAccount,
+  useConnect,
+  useContract,
+  useContractRead,
+  useContractWrite,
+  useNetwork,
+  useWaitForTransaction,
+} from "wagmi";
+import { ethers } from "ethers";
 
 const Profile: NextPage = () => {
-    
-    const { address, isConnecting, isDisconnected } = useAccount();
+
+  const { address, isConnecting, isDisconnected } = useAccount();
 
 
 
-    return (
-        <div className="profileContainer">
-            <header className="AppHeader">
-                <h1> Profile </h1>
-            </header>
-            <body>
-             Address: {address}
-            </body>
+  return (
+    <div className="profileContainer">
+
+      <div className="profileLeft">
+        <div>
+          Address: {address}
+        </div>
       </div>
-    );
-  };
-  
-  export default Profile;
-  
+      <div className="profileRight">
+        <div className="profileRightTitle">
+
+        </div>
+        <div className="profileNTTs">
+
+        </div>
+      </div>
+
+
+
+    </div>
+  );
+};
+
+export default Profile;
