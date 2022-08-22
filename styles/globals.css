@@ -175,9 +175,10 @@ homeContainer > homeTitle
 
 .homeContainer {
   max-width: 100vw;
+  width: 100vw;
   padding: 0px;
   margin: 0px;
-  height: 3600px;
+  height: 5200px;
 }
 
 .homeTitle {
@@ -212,7 +213,6 @@ homeContainer > homeTitle
   width: 100vw;
   padding: 0px;
   margin: 0px;
-  overflow: hidden;
 }
 
 
@@ -375,18 +375,19 @@ PROFILE PAGE
 
 **************************************************/
 
-.profileContainer {  display: grid;
+.profileContainer {
+  display: grid;
   grid-template-columns: 40% 60%;
   grid-auto-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
 }
 
-.profileLeft { 
-  grid-area: 1 / 1 / 2 / 2; 
+.profileLeft {
+  grid-area: 1 / 1 / 2 / 2;
 }
 
-.profileRight { 
+.profileRight {
   grid-area: 1 / 2 / 2 / 3;
 }
 

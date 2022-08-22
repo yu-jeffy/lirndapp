@@ -7,6 +7,9 @@ const Ripple = () => {
     gsap.registerPlugin(ScrollTrigger);
     useEffect(() => {
         // Client-side-only code
+
+       
+
         gsap.registerPlugin(ScrollTrigger);
         const bgVideo = document.querySelector("#bgVideo");
         let tl = gsap.timeline({
@@ -14,10 +17,13 @@ const Ripple = () => {
                 trigger: "#bgVideo",
                 pin: true,
                 pinType: "transform",
-                end: "800",
+                end: "2000",
                 pinSpacing: false,
+                anticipatePin: 2.3,
                 scrub: 1.25,
-                duration: 1
+                duration: 1,
+                preventOverlaps: true,
+                fastScrollEnd: true
 
             }
         });
@@ -32,8 +38,9 @@ const Ripple = () => {
                 trigger: "#homeGrid",
                 pin: true,
                 start: "top +=200px",
-                end: "#bgVideo -=600px",
-                pinSpacing: false
+                end: "#bgVideo -=1800px",
+                pinSpacing: false,
+                preventOverlaps: true
             }
         });
 

@@ -3,8 +3,7 @@
 
 
 const nextConfig = {
-  reactStrictMode: true,
-  concurrentFeatures: true
+  reactStrictMode: true
 };
 
 module.exports = nextConfig;
