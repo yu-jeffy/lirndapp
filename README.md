@@ -2,7 +2,6 @@
 Pages:
 - Home
 - Explore
-- Leap
 - Educators
 - Profile
 
