@@ -1,5 +1,7 @@
 import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
+import ClientOnly from "../comps/ClientOnly";
+import Image from 'next/image';
 
 export async function getServerSideProps() {
   try {
@@ -44,7 +46,28 @@ export default function Explore({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
-    <div>
+    <div className="exploreContainer">
+
+
+      <ClientOnly>
+        {
+          NTTMetadata.map((metadata, i) => (
+            <div key={i} className="profileNTT">
+              <Image
+                alt="Loading Image ..."
+                layout="responsive"
+                width={10}
+                height={10}
+                src={"https://api.lirn.io/ipfs/" + metadata.image.slice(7)} />
+              <h2 className="profileNTTname">{metadata.name}</h2>
+              <p className="profileNTTdesc">{metadata.description}</p>
+            </div>
+          ))
+        }
+        <br />
+      </ClientOnly>
+
+      There are {NTTCount.nttCount} NTT's available
       {
         NTTMetadata.map((metadata, i) => (
           <div key={i}>
@@ -52,6 +75,8 @@ export default function Explore({
           </div>
         ))
       }
+
+      
     </div>
   );
 };

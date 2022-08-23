@@ -2,7 +2,7 @@ const Educators: NextPage = () => {
 
     return (
       <div>
-        
+        Form for educators here
       </div>
     );
   };
