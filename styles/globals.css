@@ -24,7 +24,7 @@ NAVIGATION BAR ( LOGO, LINKS, AND WALLET LOGIN)
   display: flex;
   overflow: hidden;
   color: white;
-  height: 80px;
+  height: 9vh;
 
 
 }
@@ -49,25 +49,24 @@ NAVIGATION BAR ( LOGO, LINKS, AND WALLET LOGIN)
 }
 
 .linkBar {
-  padding-right: 20px;
-  padding-top: 26px;
-  flex-grow: 1;
+  margin-left: auto;
+  float: right;
   text-align: right;
-
+  display: flex;
 }
 
 .connectButton {
-  padding-right: 4%;
-  padding-top: 18px;
-  text-align: right;
-
+  padding-right: 2vw;
+  padding-top: 2vh;
 }
 
 .links {
-  padding-right: 1.5vw;
+  padding-right: 2vw;
+  padding-top: 3vh;
   color: black;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /************************************************** 
@@ -179,6 +178,7 @@ homeContainer > homeTitle
   padding: 0px;
   margin: 0px;
   height: 5200px;
+  background: #F2F2F2;
 }
 
 .homeTitle {
@@ -369,29 +369,153 @@ homeContainer > homeTitle
   display: none;
 }
 
+
+
+/************************************************** 
+
+EXPLORE PAGE
+
+**************************************************/
+
+.exploreContainer{
+  background: #F2F2F2;
+  padding-top: 7vh;
+}
+
+
+
 /************************************************** 
 
 PROFILE PAGE
 
 **************************************************/
 
+
 .profileContainer {
+  padding-top: 7vh;
+  background: #F2F2F2;
   display: grid;
-  grid-template-columns: 40% 60%;
-  grid-auto-rows: 1fr;
+  grid-template-columns: 0.6fr 1.4fr;
+  grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
+  grid-template-areas:
+    "profileLeft profileRight";
 }
 
 .profileLeft {
-  grid-area: 1 / 1 / 2 / 2;
+  grid-area: profileLeft;
+
+}
+
+
+
+.profileCard {
+  background: #FFFFFF;
+  border-radius: 30px;
+  min-height: 20vh;
+  max-width: 22vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.profileBio {
+  background: #FFFFFF;
+  border-radius: 30px;
+  min-height: 12vh;
+  max-width: 22vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.profileSocials {
+  background: #FFFFFF;
+  border-radius: 30px;
+  min-height: 12vh;
+  max-width: 22vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vh;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .profileRight {
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: profileRight;
 }
 
+.profileBanner {
+  background: linear-gradient(92.13deg, #8015E8 0.98%, #FF2976 98.81%);
+  border-radius: 30px;
+  width: auto;
+  margin-right: 5vw;
+  margin-bottom: 2vh;
+  min-height: 20vh;
+  box-sizing: border-box;
+  padding-left: 1.1vw;
+  padding-top: 1.1vh;
+}
 
+.profileBanner1 {
+  font-size: 4.75vh;
+  font-weight: bold;
+  color: white;
+}
+
+.profileBanner2 {
+  line-height: 4.5vh;
+  font-size: 2.25vh;
+  font-weight: 100;
+  color: white;
+}
+
+.profileBanner3 {
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.3vh;
+  color: #FFFFFF;
+  background: none;
+  border: solid;
+  margin-top: .5vh;
+  width: max-content;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profileOwned {
+  width: auto;
+  display: blocks;
+}
+
+.profileNTT {
+  float: left;
+  width: 220px;
+  min-height: min-content;
+  height: 400px;
+  background: #FFFFFF;
+  border-radius: 30px;
+  padding: 25px;
+  cursor: pointer;
+  margin-right: 3vw;
+  margin-bottom: 5vh;
+}
+
+.profileNTTname {
+  font-weight: bold;
+  font-size: 2vh;
+}
+
+.profileNTTdesc {
+  font-weight: lighter;
+  font-size: 1vh;
+}
 
 /************************************************** 
 

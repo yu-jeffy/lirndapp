@@ -3,7 +3,10 @@
 
 
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: ['api.lirn.io'],
+  },
 };
 
 module.exports = nextConfig;

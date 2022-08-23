@@ -35,9 +35,8 @@ export async function getServerSideProps() {
     // Get NTT Metadata from DB
     const metadataJSON = await countClient.db("NTTs").collection("Metadata").find({}).toArray();
     const metadata = JSON.parse(JSON.stringify(metadataJSON));
-    console.log(metadata);
 
-    
+
 
     // `await clientPromise` will use the default database passed in the MONGODB_URI
     // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
@@ -77,7 +76,6 @@ const contractAbi = new ethers.utils.Interface(soulboundv1);
 export default function Profile({
   isConnected, NTTCount, NTTMetadata,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(NTTMetadata);
   // Gets wallet info
   const { address, isConnecting, isDisconnected } = useAccount();
 
@@ -112,52 +110,76 @@ export default function Profile({
     if (ownedNTTids.includes(NTTMetadata[i].tokenId)) {
       filteredMetadata.push(NTTMetadata[i]);
     }
-    
+
   }
+
+
 
   return (
     <div className="profileContainer">
-
       <div className="profileLeft">
-        <div>
-          {isConnected ? (
-            <h2>You are connected to MongoDB</h2>
-          ) : (
-            <h2>
-              You are NOT connected to MongoDB.
-            </h2>
-          )}
-          <br />
-
-          <br />
+        <div className="profileCard">
           <ClientOnly>
-            Address: {address} <br /><br />
-            Owned NTTs: <br />
-            Token IDs: {ownedNTTids}<br />
-            Tokens Metadata:
+            {address ? (
+              <span>You are Logged In <br />
+                Address: {address} <br /><br /></span>
+            ) : (
+              <div className="connectButton">
+                <ConnectButton />
+              </div>)}
+
+            Owned NTTs (by ID): {ownedNTTids}<br />
+
+          </ClientOnly>
+        </div>
+        <div className="profileBio">
+          Bio
+        </div>
+        <div className="profileSocials">
+          Socials
+        </div>
+
+      </div>
+      <div className="profileRight">
+        <div className="profileBanner">
+          <span className="profileBanner1">&#128075; Hey, Lirner!</span> <br />
+          <span className="profileBanner2">Looks like you got a new nice knowledge collection going on. Great work!</span> <br />
+          <Link href="/explore">
+            <div className="profileBanner3">Explore Content</div>
+          </Link>
+        </div>
+        <h2> My Earned Knowledge</h2>
+        <div className="profileOwned">
+          <ClientOnly>
             {
               filteredMetadata.map((metadata, i) => (
-                <div key={i}>
-                  <p>{metadata.name}</p>
+                <div key={i} className="profileNTT">
+                  <Image
+                    alt="Loading Image ..."
+                    layout="responsive"
+                    width={10}
+                    height={10}
+                    src={"https://api.lirn.io/ipfs/" + metadata.image.slice(7)} />
+                  <h2 className="profileNTTname">{metadata.name}</h2>
+                  <p className="profileNTTdesc">{metadata.description}</p>
                 </div>
               ))
             }
             <br />
           </ClientOnly>
-
         </div>
-      </div>
-      <div className="profileRight">
-        <div className="profileRightTitle">
 
-        </div>
-        <div className="profileNTTs">
 
-        </div>
       </div>
 
 
-
+      {isConnected ? (
+        <h2>You are connected to MongoDB</h2>
+      ) : (
+        <h2>
+          You are NOT connected to MongoDB.
+        </h2>
+      )}
     </div>
   );
 };
