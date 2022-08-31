@@ -1,3 +1,6 @@
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Imports / Libraries
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import Image from 'next/image';
@@ -5,6 +8,7 @@ import TestFrame from '../public/TestFrame.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from 'next/link'
+import { NextPage } from 'next';
 import {
   useAccount,
   useConnect,
@@ -15,6 +19,7 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import { ethers } from "ethers";
+
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // Home Page
@@ -38,22 +43,18 @@ const Home: NextPage = () => {
         <div className="home1a">How does it work?</div>
         <div className="home1b">
           <div className="home1c">
-            <img className="home1cIcon" src="search.png" /> <br />
             <span className="home1cTitle">Search For Topic Of Interest</span>
             <p className="home1cText">Go ahead and explore the library and choose a topic of interest. Once you feel ready, go ahead and take the assessment.</p>
           </div>
           <div className="home1c">
-            <img className="home1cIcon" src="wallet.png" /> <br />
             <span className="home1cTitle">Connect Your Wallet</span>
             <p className="home1cText">First things first, connect your wallet in the top right corner. Don’t have a wallet just yet? Follow the steps here to get you started.</p>
           </div>
           <div className="home1c">
-            <img className="home1cIcon" src="assessment.png" /> <br />
             <span className="home1cTitle">Take Assessment</span>
             <p className="home1cText">The time has come: time to prove your knowledge. Go through the assessment and test yourself on the topic you chose.</p>
           </div>
           <div className="home1c">
-            <img className="home1cIcon" src="checkmark.png" /> <br />
             <span className="home1cTitle">Verify Your Knowledge</span>
             <p className="home1cText">Pass the assessment? Congrats! you have now learned ad truly verified your knowledge. Share your NTT with the world!</p>
           </div>

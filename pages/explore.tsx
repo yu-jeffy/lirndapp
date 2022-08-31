@@ -1,3 +1,6 @@
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Imports / Libraries
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
 import ClientOnly from "../comps/ClientOnly";
@@ -17,7 +20,8 @@ export async function getServerSideProps() {
 
     // Get NTT Metadata from DB
     const metadataJSON = await countClient.db("NTTs").collection("Metadata").find({}).toArray();
-    const metadata = JSON.parse(JSON.stringify(metadataJSON));
+    let metadata: any
+    metadata = JSON.parse(JSON.stringify(metadataJSON));
 
     return {
       props: {
@@ -52,7 +56,8 @@ export default function Explore({
     <div className="exploreContainer">
       <ClientOnly>
         {
-          NTTMetadata.map((metadata, i) => (
+          NTTMetadata ? (
+          NTTMetadata.map((metadata: any, i: any) => (
             <div key={i} className="profileNTT">
               <Image
                 alt="Loading Image ..."
@@ -63,14 +68,15 @@ export default function Explore({
               <h2 className="profileNTTname">{metadata.name}</h2>
               <p className="profileNTTdesc">{metadata.description}</p>
             </div>
-          ))
+          ))) :
+          (<span>No Metadata<br /></span>)
         }
         <br />
       </ClientOnly>
 
-      There are {NTTCount.nttCount} NTT's available
+      There are {NTTCount.nttCount} NTTs available
       {
-        NTTMetadata.map((metadata, i) => (
+        NTTMetadata.map((metadata: any, i: any) => (
           <div key={i}>
             <p>{metadata.name}</p>
           </div>

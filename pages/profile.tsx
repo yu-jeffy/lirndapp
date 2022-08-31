@@ -1,3 +1,6 @@
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Imports / Libraries
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 import { useRouter } from 'next/router';
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
@@ -79,7 +82,7 @@ export default function Profile({
 
   // Queries the Smart Contract to see which NTTs the logged-in address owns
   // Returns an array of Token IDs that are owned by the logged-in address
-  function checkNTTs() {
+  function useCheckNTTs() {
     let userNTTs = [];
     for (let i = 1; i <= totalNTTs; i++) {
       let readArgs = i + "";
@@ -97,7 +100,7 @@ export default function Profile({
   }
 
   // Array of Token IDs that are owned by the logged-in address
-  let ownedNTTids = checkNTTs();
+  let ownedNTTids = useCheckNTTs();
 
   // Array of Metadata of tokens owned by the logged-in address
   // Produced by filtering all the Metadata fetched by the Server Side loading by token IDs in "ownedNTTids" variable
