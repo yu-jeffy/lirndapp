@@ -5,7 +5,6 @@ import TestFrame from '../public/TestFrame.png';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from 'next/link'
-
 import {
   useAccount,
   useConnect,
@@ -17,8 +16,14 @@ import {
 } from "wagmi";
 import { ethers } from "ethers";
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Home Page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 const Home: NextPage = () => {
 
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  // Render the page for the user
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   return (
     <div className="homeContainer">
       <div className="homeTitle">

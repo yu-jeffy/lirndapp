@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LirnLogo from '../public/LirnLogo.png'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
 import {
   useAccount,
   useConnect,
@@ -14,8 +13,14 @@ import {
 } from "wagmi";
 import { ethers } from "ethers";
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Footer Component
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 const Footer = () => {
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  // Render the component for the user
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   return (
     <div className="bottomBar">
       <div className="footerContainer">

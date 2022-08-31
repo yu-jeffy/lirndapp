@@ -13,7 +13,7 @@ WARNING: CHANGES HERE ARE GLOBAL
 
 /************************************************** 
 
-NAVIGATION BAR ( LOGO, LINKS, AND WALLET LOGIN)
+NAVIGATION BAR ( LOGO, LINKS, AND WALLET LOGIN )
 
 **************************************************/
 
@@ -380,6 +380,8 @@ EXPLORE PAGE
 .exploreContainer{
   background: #F2F2F2;
   padding-top: 7vh;
+  min-height: 100vh;
+  height: min-content;
 }
 
 
@@ -392,6 +394,7 @@ PROFILE PAGE
 
 
 .profileContainer {
+  min-height: 100vh;
   padding-top: 7vh;
   background: #F2F2F2;
   display: grid;

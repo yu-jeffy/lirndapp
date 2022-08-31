@@ -5,14 +5,12 @@ import { useContext } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { Fetch } from "../comps/Fetch";
 import ClientOnly from "../comps/ClientOnly";
 import { ethers } from "ethers";
 import soulboundv1 from '../public/soulboundv1.json';
 import { MongoClient } from 'mongodb';
 import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
-
 import {
   useAccount,
   useConnect,
@@ -23,7 +21,19 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Variables / Constants
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+// ABI for Smart Contract
+const contractAbi = new ethers.utils.Interface(soulboundv1);
+
+
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Server Side (Runs before page loads for user)
+// Connects to MongoDB, queries Metadata, and stores in a variable to be used on page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 export async function getServerSideProps() {
   try {
     const countClient = await clientPromise;
@@ -35,17 +45,6 @@ export async function getServerSideProps() {
     // Get NTT Metadata from DB
     const metadataJSON = await countClient.db("NTTs").collection("Metadata").find({}).toArray();
     const metadata = JSON.parse(JSON.stringify(metadataJSON));
-
-
-
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
 
     return {
       props: {
@@ -63,23 +62,19 @@ export async function getServerSideProps() {
 }
 
 
-// ABI for Smart Contract
-const contractAbi = new ethers.utils.Interface(soulboundv1);
 
-
-
-// note: need to get this from mongodb
-// const NTTCount = 20;
-
-
-
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Profile Page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 export default function Profile({
   isConnected, NTTCount, NTTMetadata,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // Gets wallet info
+
+  // Gets connected wallet address
   const { address, isConnecting, isDisconnected } = useAccount();
 
-  // Get the NTTCount value in the MongoDB and use as the list of NTTs to check if owned
+  // Get the NTTCount value from document in MongoDB and use as the list of NTTs to check if owned
+  // Query path: NTTs -> Count -> document
   let totalNTTs = NTTCount.nttCount;
 
   // Queries the Smart Contract to see which NTTs the logged-in address owns
@@ -101,10 +96,11 @@ export default function Profile({
     return userNTTs;
   }
 
-  // Variable of array of Token IDs that are owned by the logged-in address
+  // Array of Token IDs that are owned by the logged-in address
   let ownedNTTids = checkNTTs();
 
-
+  // Array of Metadata of tokens owned by the logged-in address
+  // Produced by filtering all the Metadata fetched by the Server Side loading by token IDs in "ownedNTTids" variable
   let filteredMetadata = [];
   for (let i = 0; i < NTTMetadata.length; i++) {
     if (ownedNTTids.includes(NTTMetadata[i].tokenId)) {
@@ -114,7 +110,9 @@ export default function Profile({
   }
 
 
-
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  // Render the page for the user
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   return (
     <div className="profileContainer">
       <div className="profileLeft">
@@ -122,13 +120,12 @@ export default function Profile({
           <ClientOnly>
             {address ? (
               <span>You are Logged In <br />
-                Address: {address} <br /><br /></span>
+                Address: {address} <br /></span>
             ) : (
-              <div className="connectButton">
-                <ConnectButton />
-              </div>)}
+              <span>Not Logged In<br /></span>)}
 
-            Owned NTTs (by ID): {ownedNTTids}<br />
+            <br />
+            Owned NTTs (by ID): {ownedNTTids}
 
           </ClientOnly>
         </div>
