@@ -1,3 +1,6 @@
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Imports / Libraries
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 import Link from 'next/link'
 import Image from 'next/image'
 import LirnLogo from '../public/LirnLogo.png'
