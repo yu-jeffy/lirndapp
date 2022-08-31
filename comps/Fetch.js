@@ -1,7 +1,9 @@
+// COMPONENT WITH FUNCTION TO FETCH NTTS
+// CURRENTLY NOT IN USE, BUT FILE SAVED IN BUILD FOR REFERENCE
+// REMOVE IN PRODUCTION
+
 import * as React from 'react';
 import soulboundv1 from '../public/soulboundv1.json';
-
-
 import { ethers } from "ethers";
 import {
     useAccount,
@@ -17,10 +19,10 @@ const contractAbi = new ethers.utils.Interface(soulboundv1);
 
 const NTTCount = 20;
 
-
 export function Fetch() {
     const { address, isConnecting, isDisconnected } = useAccount();
 
+    // Calls the  function "balanceOf" on SC
     function checkNTTs() {
         let userNTTs = [];
         for (let i = 0; i <= NTTCount; i++) {

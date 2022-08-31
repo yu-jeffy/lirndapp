@@ -3,6 +3,10 @@ import { InferGetServerSidePropsType } from 'next'
 import ClientOnly from "../comps/ClientOnly";
 import Image from 'next/image';
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Server Side (Runs before page loads for user)
+// Connects to MongoDB, queries Metadata, and stores in a variable to be used on page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 export async function getServerSideProps() {
   try {
     const countClient = await clientPromise;
@@ -14,17 +18,6 @@ export async function getServerSideProps() {
     // Get NTT Metadata from DB
     const metadataJSON = await countClient.db("NTTs").collection("Metadata").find({}).toArray();
     const metadata = JSON.parse(JSON.stringify(metadataJSON));
-
-
-
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
 
     return {
       props: {
@@ -41,14 +34,22 @@ export async function getServerSideProps() {
   }
 }
 
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Explore Page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 export default function Explore({
   isConnected, NTTCount, NTTMetadata,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
+
+
+
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  // Render the page for the user
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   return (
     <div className="exploreContainer">
-
-
       <ClientOnly>
         {
           NTTMetadata.map((metadata, i) => (
@@ -75,8 +76,6 @@ export default function Explore({
           </div>
         ))
       }
-
-      
     </div>
   );
 };

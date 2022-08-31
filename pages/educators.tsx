@@ -1,11 +1,16 @@
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// Educators Page
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 const Educators: NextPage = () => {
 
-    return (
-      <div>
-        Form for educators here
-      </div>
-    );
-  };
-  
-  export default Educators;
-  
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  // Render the page for the user
+  // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  return (
+    <div>
+      Form for educators here
+    </div>
+  );
+};
+
+export default Educators;
