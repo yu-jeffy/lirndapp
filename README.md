@@ -5,9 +5,9 @@ Pages:
 - Educators
 - Profile
 
-![MVP Beta Homepage Animation](https://drive.google.com/file/d/15l-p5sY162FlgeHtuJhaCvJDSwV1OuyC/view?usp=sharing)
+![MVP Beta Homepage Animation](lirn-beta-homepage-animation.gif)
 
-![MVP Beta Profile Animation](https://drive.google.com/file/d/15gaIXp01yNwchd-Crzg4lh4WeeLkRwYk/view?usp=sharing)
+![MVP Beta Profile Animation](lirn-beta-profile.gif)
 
 ## Getting Started
 
