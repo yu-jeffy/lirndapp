@@ -1,9 +1,13 @@
-## Lirn.io Web Application Build Out
+## Lirn.io Web Application MVP Beta
 Pages:
 - Home
 - Explore
 - Educators
 - Profile
+
+![MVP Beta Homepage Animation](https://drive.google.com/file/d/15l-p5sY162FlgeHtuJhaCvJDSwV1OuyC/view?usp=sharing)
+
+![MVP Beta Profile Animation](https://drive.google.com/file/d/15gaIXp01yNwchd-Crzg4lh4WeeLkRwYk/view?usp=sharing)
 
 ## Getting Started
 
